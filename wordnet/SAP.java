@@ -11,7 +11,7 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 public class SAP {
-    private Digraph g;
+    private final Digraph g;
 
     // constructor takes a digraph (not necessarily a DAG)
     public SAP(Digraph G) {
@@ -58,6 +58,9 @@ public class SAP {
 
     // length of shortest ancestral path between any vertex in v and any vertex in w; -1 if no such path
     public int length(Iterable<Integer> v, Iterable<Integer> w) {
+        if (v == null || w == null)
+            throw new IllegalArgumentException();
+
         BreadthFirstDirectedPaths pathToV = new BreadthFirstDirectedPaths(this.g, v);
         BreadthFirstDirectedPaths pathToW = new BreadthFirstDirectedPaths(this.g, w);
         int result = Integer.MAX_VALUE;
@@ -75,6 +78,9 @@ public class SAP {
 
     // a common ancestor that participates in shortest ancestral path; -1 if no such path
     public int ancestor(Iterable<Integer> v, Iterable<Integer> w) {
+        if (v == null || w == null)
+            throw new IllegalArgumentException();
+
         BreadthFirstDirectedPaths pathToV = new BreadthFirstDirectedPaths(this.g, v);
         BreadthFirstDirectedPaths pathToW = new BreadthFirstDirectedPaths(this.g, w);
         int result = Integer.MAX_VALUE;
